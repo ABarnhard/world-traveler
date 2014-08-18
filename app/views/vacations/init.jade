@@ -1,22 +1,25 @@
 extends ../shared/template
 block content
   #new-vacation
-    form.form-horizontal(role='form')
-      .form-group
-        label.col-sm-2.control-label(for='name') Vacation Name:
-        .col-sm-10
-          input.form-control#name(type='text', placeholder='Europe')
-      .form-group
-        label.col-sm-2.control-label(for='from') From:
-        .col-sm-10
-          input.form-control#from(type='date')
-      .form-group
-        label.col-sm-2.control-label(for='to') To:
-        .col-sm-10
-          input.form-control#to(type='date')
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          button.btn.btn-default(type='submit') Add Vacation
+    .row
+      form.form-horizontal(role='form', method='post', action='/vacations')
+        input(type='hidden', name='lat')
+        input(type='hidden', name='lng')
+        .form-group
+          label.col-sm-2.control-label(for='name') Vacation Name:
+          .col-sm-10
+            input.form-control#name(type='text', name='name', placeholder='Europe')
+        .form-group
+          label.col-sm-2.control-label(for='from') From:
+          .col-sm-10
+            input.form-control#from(type='date', name='from', placeholder='mm/dd/yyyy')
+        .form-group
+          label.col-sm-2.control-label(for='to') To:
+          .col-sm-10
+            input.form-control#to(type='date', name='to', placeholder='mm/dd/yyyy')
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button.btn.btn-default(type='submit') Add Vacation
 
 block scripts
   script(src='/js/user/new-vacation.js')
