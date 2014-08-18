@@ -1,14 +1,14 @@
-## name of project
+## World Traveler
 ### Code Badges
-build status icon
-coverage status icon
+[![Build Status](https://travis-ci.org/ABarnhard/world-traveler.svg)](https://travis-ci.org/ABarnhard/world-traveler)
+[![Coverage Status](https://coveralls.io/repos/ABarnhard/world-traveler/badge.png)](https://coveralls.io/r/ABarnhard/world-traveler)
 
 ### About
-write a description about your project
+An app that allows you to track your favorite vacation destinations
 
 ### Models
 ```
-Model 1
+World
 prop-a
 prop-b
 .classMethod-c
@@ -16,7 +16,7 @@ prop-b
 ```
 
 ```
-Model 2
+Travel
 prop-e
 prop-f
 .classMethod-g
@@ -24,9 +24,10 @@ prop-f
 ```
 
 ### Features
-- feature 1
-- feature 2
-- feature 3
+- OOP
+- LESS
+- Google Maps API
+- jQuery
 
 ### Running Tests
 ```bash
@@ -35,7 +36,7 @@ $ npm test
 ```
 
 ### Contributors
-- [Chyld Medford](https://github.com/chyld)
+- [Adam Barnhard](https://github.com/abarnhard)
 
 ### License
 [MIT](LICENSE)
