@@ -1,40 +1,15 @@
 nav.navbar.navbar-default(role='navigation')
   .container-fluid
     .navbar-header
-      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#world-traveler-navbar')
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='#') Brand
-    .collapse.navbar-collapse#bs-example-navbar-collapse-1
-      ul.nav.navbar-nav
-        li.active: a(href='#') Link
-        li: a(href='#') Link
-        li.dropdown
-          a.dropdown-toggle(href='#', data-toggle='dropdown') Dropdown
-            span.caret
-          ul.dropdown-menu(role='menu')
-            li: a(href='#') Action
-            li: a(href='#') Another action
-            li: a(href='#') Something else here
-            li.divider
-            li: a(href='#') Separated link
-            li.divider
-            li: a(href='#') One more separated link
-      form.navbar-form.navbar-left(role='search')
-        .form-group
-          input.form-control(type='text', placeholder='Search')
-        button.btn.btn-default(type='submit') Submit
+      a.navbar-brand(href='/') World Traveler
+    .collapse.navbar-collapse#world-traveler-navbar
       ul.nav.navbar-nav.navbar-right
-        li: a(href='#') Link
-        li.dropdown
-          a.dropdown-toggle(href='#', data-toggle='dropdown') Dropdown 
-            span.caret
-          ul.dropdown-menu(role='menu')
-            li: a(href='#') Action
-            li: a(href='#') Another action
-            li: a(href='#') Something else here
-            li.divider
-            li: a(href='#') Separated link
+        li: a(href='/about') About
+        li: a(href='/faq') FAQ
+        li: a(href='/contact') Contact
 
