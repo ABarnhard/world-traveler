@@ -1,0 +1,31 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-2
+    .col-xs-8
+        #map(style='height:250px;')
+    .col-xs-2
+  .row
+    .col-xs-2
+    .col-xs-8
+      table
+        thead
+          tr
+            th Name
+            th From
+            th To
+            th Lat
+            th Lng
+        tbody
+          each vacation in vacations
+            tr
+              td= vacation.name
+              td= momentjs(vacation.startDate).format('MMM Do YY')
+              td= momentjs(vacation.endDate).format('MMM Do YY')
+              td= vacation.lat.toFixed(3)
+              td= vacation.lng.toFixed(3)
+      .col-xs-2
+
+block scripts
+  script(src='/js/user/map-control.js')
+
