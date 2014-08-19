@@ -2,7 +2,9 @@
 
 var Mongo = require('mongodb'),
     _     = require('lodash'),
-    cp    = require('child_process');
+    cp    = require('child_process'),
+    fs    = require('fs'),
+    path  = require('path');
 
 function Vacation(o){
   this.name = o.name.trim();
@@ -36,7 +38,7 @@ Vacation.findById = function(id, cb){
   });
 };
 
-Vacation.prototype.addPhoto = function(url, cb){
+Vacation.prototype.downloadPhoto = function(url, cb){
   var exts  = url.split('.'),
       ext   = exts[exts.length - 1],
       dir   = this._id.toString(),
@@ -50,6 +52,26 @@ Vacation.prototype.addPhoto = function(url, cb){
     self.photos.push(photo);
     Vacation.collection.save(self, cb);
   });
+};
+
+Vacation.prototype.uploadPhotos = function(files, cb){
+  var dir = __dirname + '/../static/img/' + this._id,
+      exists = fs.existsSync(dir),
+      self = this;
+
+  if(!exists){
+    fs.mkdirSync(dir);
+  }
+
+  files.photos.forEach(function(photo){
+    var ext = path.extname(photo.path),
+        rel = '/img/' + self._id.toString() + '/' + self.photos.length + ext,
+        abs = dir + '/' + self.photos.length + ext;
+    fs.renameSync(photo.path, abs);
+    self.photos.push(rel);
+  });
+
+  Vacation.collection.save(self, cb);
 };
 
 module.exports = Vacation;

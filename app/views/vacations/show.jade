@@ -24,18 +24,22 @@ block content
                     td= vacation.photos.length
           .row
             .col-xs-12
-              form.form-horizontal(role='form', method='post', action='/vacations/#{vacation._id}/photos/new')
+              form(role='form', method='post', action='/vacations/#{vacation._id}/photos/download')
                 .form-group
-                  label.col-sm-2.control-label(for='url') Image URL:
-                  .col-sm-10
-                    input.form-control#name(type='text', name='url', placeholder='http://image.com/photo.jpg')
+                  label(for='url') Photo URL
+                  input.form-control#url(type='text', name='url')
+                button.btn.btn-success(type='submit') Add Photo
+          .row
+            .col-xs-12
+              form(role='form', method='post', action='/vacations/#{vacation._id}/photos/upload', enctype='multipart/form-data')
                 .form-group
-                  .col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Add Image
+                  label(for='photos') Photos
+                  input.form-control#photos(type='file', name='photos', multiple=true)
+                button.btn.btn-success(type='submit') Add Photo
     .row
       .col-xs-12
         each photo in vacation.photos
-          .photo(style='background-image:url(#{photo});')
+          a(href='#{photo}'): .photo(style='background-image:url(#{photo});')
 
 block scripts
   script(src='/js/user/vacation-show.js')
