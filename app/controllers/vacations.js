@@ -21,3 +21,9 @@ exports.index = function(req, res){
   });
 };
 
+exports.show = function(req, res){
+  // console.log(req.body);
+  Vacation.findById(req.params.id, function(err, v){
+    res.render('vacations/show', {vacation:v, moment:moment});
+  });
+};

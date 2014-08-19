@@ -18,8 +18,8 @@ block content
             th Lng
         tbody
           each vacation in vacations
-            tr
-              td= vacation.name
+            tr(data-lat='#{vacation.lat}', data-lng='#{vacation.lng}', data-name='#{vacation.name}')
+              td: a(href='/vacations/#{vacation._id}')= vacation.name
               td= momentjs(vacation.startDate).format('MMM Do YY')
               td= momentjs(vacation.endDate).format('MMM Do YY')
               td= vacation.lat.toFixed(3)

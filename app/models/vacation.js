@@ -1,5 +1,7 @@
 'use strict';
 
+var Mongo = require('mongodb');
+
 function Vacation(o){
   this.name = o.name.trim();
   this.startDate = new Date(o.from);
@@ -22,6 +24,11 @@ Vacation.save = function(o, cb){
   Vacation.collection.save(v, function(){
     cb(v);
   });
+};
+
+Vacation.findById = function(id, cb){
+  id = Mongo.ObjectID(id);
+  Vacation.collection.findOne({_id:id}, cb);
 };
 
 module.exports = Vacation;

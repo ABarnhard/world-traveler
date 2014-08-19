@@ -1,0 +1,36 @@
+extends ../shared/template
+block content
+  .container-fluid
+    .row
+      .col-xs-6
+        #map(data-lat='#{vacation.lat}', data-lng='#{vacation.lng}', data-name='#{vacation.name}', style='height:300px;')
+      .col-xs-6
+        .row
+          .row
+            .col-xs-12
+              h3= vacation.name
+          .row
+            .col-xs-12
+              table.table
+                tbody
+                  tr
+                    td= moment(vacation.startDate).format('MMM Do YY')
+                    td ------->
+                    td= moment(vacation.endDate).format('MMM Do YY')
+          .row
+            .col-xs-12
+              form.form-horizontal(role='form', method='post', action='/vacations')
+                .form-group
+                  label.col-sm-2.control-label(for='url') Image URL:
+                  .col-sm-10
+                    input.form-control#name(type='text', name='url', placeholder='http://image.com/photo.jpg')
+                .form-group
+                  .col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type='submit') Add Image
+    .row
+      .col-xs-12
+        h3 Photos Go Here
+
+block scripts
+  script(src='/js/user/vacation-show.js')
+

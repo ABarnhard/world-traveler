@@ -7,13 +7,9 @@
   var map;
 
   $(document).ready(function(){
-    initMap(36.2, -86.7, 2);
-    var positions = getPositions();
-    // console.log(positions);
-    positions.forEach(function(pos){
-      // console.log(pos);
-      addMarker(pos.lat, pos.lng, pos.name);
-    });
+    var p = getPosition();
+    initMap(p.lat, p.lng, 7);
+    addMarker(p.lat, p.lng, p.name);
   });
 
   function addMarker(lat, lng, name){
@@ -21,17 +17,13 @@
     new google.maps.Marker({map: map, position: latLng, title: name, animation: google.maps.Animation.DROP, icon: '/img/zombie.gif'});
   }
 
-  function getPositions(){
-    var positions = $('table tbody tr').toArray().map(function(o){
-      var pos = {};
-      pos.name = $(o).attr('data-name');
-      pos.lat = parseFloat($(o).attr('data-lat'));
-      pos.lng = parseFloat($(o).attr('data-lng'));
-      // console.log(pos);
-      return pos;
-    });
-    // console.log(positions);
-    return positions;
+  function getPosition(){
+    var pos = {};
+    pos.name = $('#map').attr('data-name');
+    pos.lat = parseFloat($('#map').attr('data-lat'));
+    pos.lng = parseFloat($('#map').attr('data-lng'));
+    console.log(pos);
+    return pos;
   }
 
   function initMap(lat, lng, zoom){

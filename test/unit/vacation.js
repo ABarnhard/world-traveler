@@ -57,5 +57,16 @@ describe('Vacation', function(){
     });
   });
 
+  describe('.findById', function(){
+    it('should find a vacation in database by it\'s ID', function(done){
+      var id = '000000000000000000000003';
+      Vacation.findById(id, function(err, vacation){
+        expect(vacation._id).to.be.instanceof(Mongo.ObjectID);
+        expect(vacation._id.toString()).to.equal(id);
+        done();
+      });
+    });
+  });
+
 });
 
