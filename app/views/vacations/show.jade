@@ -3,7 +3,7 @@ block content
   .container-fluid
     .row
       .col-xs-6
-        #map(data-lat='#{vacation.lat}', data-lng='#{vacation.lng}', data-name='#{vacation.name}', style='height:300px;')
+        #map(data-lat='#{vacation.lat}', data-lng='#{vacation.lng}', data-name='#{vacation.name}', style='height:350px;')
       .col-xs-6
         .row
           .row
@@ -12,14 +12,19 @@ block content
           .row
             .col-xs-12
               table.table
+                thead
+                  tr
+                    th Start
+                    th End
+                    th # Photos
                 tbody
                   tr
                     td= moment(vacation.startDate).format('MMM Do YY')
-                    td ------->
                     td= moment(vacation.endDate).format('MMM Do YY')
+                    td= vacation.photos.length
           .row
             .col-xs-12
-              form.form-horizontal(role='form', method='post', action='/vacations')
+              form.form-horizontal(role='form', method='post', action='/vacations/#{vacation._id}/photos/new')
                 .form-group
                   label.col-sm-2.control-label(for='url') Image URL:
                   .col-sm-10

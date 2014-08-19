@@ -8,7 +8,7 @@
 
   $(document).ready(function(){
     var p = getPosition();
-    initMap(p.lat, p.lng, 7);
+    initMap(p.lat, p.lng, 11);
     addMarker(p.lat, p.lng, p.name);
   });
 
