@@ -22,11 +22,17 @@ describe('Vacation', function(){
       done();
     });
   });
-
   describe('constructor', function(){
     it('should create a new Vacation object', function(){
-      var v = new Vacation();
+      var o = {lat:'37.688889',lng:'-97.33611100000002',name:'Wichita, KS, USA',from:'2014-10-01',to:'2014-10-11'},
+          v = new Vacation(o);
       expect(v).to.be.instanceof(Vacation);
+      expect(v.name).to.equal('Wichita, KS, USA');
+      expect(v.lat).to.be.closeTo(37.688889, 0.01);
+      expect(v.lng).to.be.closeTo(-97.33611100000002, 0.01);
+      expect(v.startDate).to.respondTo('getDate');
+      expect(v.endDate).to.respondTo('getDate');
+      expect(v.photos).to.have.length(0);
     });
   });
 
