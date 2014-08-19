@@ -1,6 +1,8 @@
 'use strict';
 
-var Mongo = require('mongodb');
+var Mongo = require('mongodb'),
+    _     = require('lodash'),
+    cp    = require('child_process');
 
 function Vacation(o){
   this.name = o.name.trim();
@@ -28,7 +30,26 @@ Vacation.save = function(o, cb){
 
 Vacation.findById = function(id, cb){
   id = Mongo.ObjectID(id);
-  Vacation.collection.findOne({_id:id}, cb);
+  Vacation.collection.findOne({_id:id}, function(err, v){
+    v = _.create(Vacation.prototype, v);
+    cb(err, v);
+  });
+};
+
+Vacation.prototype.addPhoto = function(url, cb){
+  var exts  = url.split('.'),
+      ext   = exts[exts.length - 1],
+      dir   = this._id.toString(),
+      file  = this.photos.length + '.' + ext,
+      self = this;
+
+  // console.log(url, dir, file);
+  cp.execFile(__dirname + '/../scripts/download.sh', [url, file, dir], {cwd:__dirname + '/../scripts'}, function(err, stdout, stderr){
+    // console.log(err, stdout, stderr);
+    var photo = '/img/' + dir + '/' + file;
+    self.photos.push(photo);
+    Vacation.collection.save(self, cb);
+  });
 };
 
 module.exports = Vacation;

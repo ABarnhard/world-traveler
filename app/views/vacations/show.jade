@@ -34,7 +34,8 @@ block content
                     button.btn.btn-default(type='submit') Add Image
     .row
       .col-xs-12
-        h3 Photos Go Here
+        each photo in vacation.photos
+          .photo(style='background-image:url(#{photo});')
 
 block scripts
   script(src='/js/user/vacation-show.js')

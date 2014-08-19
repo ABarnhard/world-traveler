@@ -27,3 +27,11 @@ exports.show = function(req, res){
     res.render('vacations/show', {vacation:v, moment:moment});
   });
 };
+
+exports.addPhoto = function(req, res){
+  Vacation.findById(req.params.id, function(err, v){
+    v.addPhoto(req.body.url, function(){
+      res.redirect('/vacations/' + req.params.id);
+    });
+  });
+};

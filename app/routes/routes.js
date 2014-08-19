@@ -23,6 +23,7 @@ module.exports = function(app, express){
   app.post('/vacations', vacations.create);
   app.get('/vacations', vacations.index);
   app.get('/vacations/:id', vacations.show);
+  app.post('/vacations/:id/photos/new', vacations.addPhoto);
 
   console.log('Routes Loaded');
 };
