@@ -25,4 +25,8 @@ Vacation.save = function(o, cb){
 };
 
 module.exports = Vacation;
-
+/* Will need later:
+Vacation.collection.update({_id:id}, {$set:{balance:a.balance}, $inc:{numTransacts:1}, $push:{transactions:t}}, function(){
+  if(cb){cb();}
+});
+*/
